@@ -1,0 +1,27 @@
+.custom-navbar {
+    background-color: #d1759b;
+}
+
+.hero {
+    height: 60vh;
+    background: linear-gradient(rgba(222, 145, 214, 0.6), rgba(239, 177, 177, 0.6)), 
+                url('../assets/Logo.png ');
+    background-size: cover;
+    background-position: center;
+}
+
+.btn-pink {
+    background-color: #d1759b;
+    color: white;
+    border: none;
+}
+
+.custom-footer {
+    background-color: #d1759b;
+    color: white;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    transition: 0.3s;
+}
