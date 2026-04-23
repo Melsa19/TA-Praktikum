@@ -1,97 +1,90 @@
-# sistem Manajemen Booking Salon – The Girls Club
+# Sistem Manajemen Booking Salon – Week 3
 
 ## Deskripsi
 
-Website ini merupakan sistem sederhana berbasis web yang digunakan untuk mengelola layanan salon, melakukan booking, serta menyimpan layanan favorit (wishlist). Sistem ini dibuat menggunakan HTML, CSS, JavaScript, dan Bootstrap.
+Project ini merupakan pengembangan dari tugas sebelumnya dengan menambahkan fitur berbasis PHP, yaitu penggunaan Session dan Cookies untuk autentikasi pengguna. Sistem yang dibuat adalah website booking salon yang memungkinkan pengguna melakukan pemesanan layanan serta menyimpan wishlist.
 
 ---
 
 ## Fitur Utama
 
-### 1. Dark Mode
+### 1. Sistem Login (Session)
 
-* Pengguna dapat mengubah tampilan website menjadi mode gelap atau terang.
-* Preferensi tema disimpan menggunakan **localStorage** sehingga tetap tersimpan saat halaman di-refresh.
+* Tersedia halaman login dengan input username dan password
+* Validasi login menggunakan data hardcode
+* Status login disimpan menggunakan PHP Session
+* Setelah login berhasil, pengguna dapat mengakses halaman utama
+* Session digunakan untuk menampilkan informasi user yang sedang login
 
----
+### 2. Logout
 
-### 2. Booking Layanan
+* Tersedia tombol logout pada navbar
+* Menghapus session yang sedang aktif
+* Setelah logout, pengguna tetap berada di halaman utama (dashboard), namun status login hilang
 
-* Pengguna dapat melakukan booking layanan salon melalui tombol **Pesan**.
-* Setiap layanan memiliki jumlah slot (stok) yang akan berkurang setiap kali dilakukan booking.
-* Jika slot habis:
+### 3. Remember Me (Cookies)
 
-  * Tombol akan berubah menjadi **“Penuh”**
-  * Tidak bisa diklik lagi
+* Jika checkbox "Remember Me" dipilih saat login:
 
----
+  * Username akan disimpan dalam cookies
+  * Saat membuka kembali halaman login, username otomatis terisi
 
-###  3. Wishlist (Layanan Favorit)
+### 4. Navbar Dinamis
 
-* Pengguna dapat menambahkan layanan ke wishlist dengan tombol **Wishlist**.
-* Sistem akan:
+* Jika pengguna belum login:
 
-  * Menampilkan notifikasi jika berhasil ditambahkan
-  * Mencegah duplikasi data (tidak bisa menambahkan layanan yang sama dua kali)
-* Data wishlist disimpan di **localStorage**
+  * Menampilkan tombol Login
+* Jika pengguna sudah login:
 
----
-
-### 4. Tampilan Wishlist (Modal)
-
-* Wishlist ditampilkan dalam bentuk **popup modal (Bootstrap)**.
-* Berisi daftar layanan yang telah ditambahkan.
-* Jika kosong, akan muncul pesan *“Wishlist kosong”*
-
----
-
-### 5. Hapus Wishlist
-
-* Terdapat tombol **Kosongkan** untuk menghapus seluruh isi wishlist.
-* Data akan langsung terhapus dari tampilan dan localStorage.
-
----
-
-### 6. Form Booking
-
-* Pengguna dapat mengisi form booking:
-
-  * Nama pelanggan
-  * Nomor HP
-  * Pilihan layanan
-  * Tanggal booking
-* Validasi:
-
-  * Semua field wajib diisi
-  * Nomor HP harus berupa angka (9–15 digit)
-* Setelah berhasil, akan muncul notifikasi booking berhasil.
+  * Menampilkan teks "Halo, username"
+  * Menampilkan tombol Logout
 
 ---
 
 ## Teknologi yang Digunakan
 
-* HTML5
-* CSS3
-* JavaScript (Vanilla JS)
-* Bootstrap 5
+* HTML
+* CSS (Bootstrap 5)
+* JavaScript
+* PHP (Session dan Cookies)
 
 ---
 
-## Penyimpanan Data
+## Struktur Project
 
-* **localStorage**
-
-  * Menyimpan tema (dark/light mode)
-  * Menyimpan data wishlist
+/project
+│
+├── index.php
+├── login.php
+├── logout.php
+├── auth.php
+├── css/
+├── js/
+├── assets/
 
 ---
 
-## Tujuan Sistem
-
-Sistem ini dibuat untuk mempermudah pengguna dalam:
-
-* Melihat layanan salon
-* Melakukan booking secara cepat
-* Menyimpan layanan favorit
+## Cara Menjalankan Project
 
 
+1. Simpan project di folder htdocs/www
+2. Akses melalui browser:
+   http://localhost/nama-folder-project/login.php
+3. Gunakan akun berikut untuk login:
+
+   * Username: admin
+   * Password: 123
+
+---
+
+## Catatan
+
+* Session digunakan untuk mengatur status login pengguna
+* Cookies digunakan untuk menyimpan username sementara
+* Sistem ini masih menggunakan data statis (belum menggunakan database)
+
+---
+
+## Kesimpulan
+
+Pada Week 3 ini, sistem telah berhasil dikembangkan menjadi lebih dinamis dengan menambahkan autentikasi menggunakan PHP Session dan Cookies. Fitur ini meningkatkan keamanan dan pengalaman pengguna dalam menggunakan sistem booking salon.
