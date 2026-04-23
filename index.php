@@ -1,3 +1,7 @@
+<?php 
+
+include 'auth.php'; ?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -36,6 +40,19 @@
             Wishlist
             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="wishlistCount">0</span>
           </button>
+           <li class="nav-item d-flex align-items-center text-white ms-2">
+      Halo, <?= isset($_SESSION['username']) ? $_SESSION['username'] : 'Guest'; ?>
+    </li>
+
+    <?php if (isset($_SESSION['username'])): ?>
+    <li class="nav-item ms-2">
+      <a href="logout.php" class="btn btn-sm btn-danger">Logout</a>
+    </li>
+    <?php else: ?>
+    <li class="nav-item ms-2">
+      <a href="login.php" class="btn btn-sm btn-light">Login</a>
+    </li>
+    <?php endif; ?>
         </li>
       </ul>
     </div>
