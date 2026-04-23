@@ -1,0 +1,69 @@
+.custom-navbar {
+    background-color: #d1759b;
+}
+
+.hero {
+    height: 60vh;
+    background: linear-gradient(rgba(222, 145, 214, 0.6), rgba(239, 177, 177, 0.6)), 
+                url('../assets/Logo.png ');
+    background-size: cover;
+    background-position: center;
+}
+
+.btn-pink {
+    background-color: #d1759b;
+    color: white;
+    border: none;
+}
+
+.custom-footer {
+    background-color: #d1759b;
+    color: white;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    transition: 0.3s;
+}
+
+.dark-mode {
+    background-color: #12152a;
+    color: #f4f4f8;
+}
+
+.dark-mode .custom-navbar {
+    background-color: #171b2f !important;
+}
+
+.dark-mode .hero,
+.dark-mode .card,
+.dark-mode .form-control,
+.dark-mode .form-select,
+.dark-mode .modal-content {
+    background-color: #1f2239;
+    color: #f4f4f8;
+    border-color: #39406d;
+}
+
+.dark-mode .btn-pink {
+    background-color: #a84b78;
+}
+
+.dark-mode .btn-outline-secondary {
+    color: #f4f4f8;
+    border-color: #f4f4f8;
+}
+
+#wishlistCount {
+    font-size: 0.75rem;
+}
+
+.service-card {
+    min-height: 100%;
+}
+
+.service-image {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
