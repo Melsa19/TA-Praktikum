@@ -34,16 +34,20 @@
             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="wishlistCount">0</span>
           </button>
         </li>
-        @if(session('login'))
+        @if(Auth::check())
         <li class="nav-item d-flex align-items-center text-white ms-2">
-          Halo, {{ session('username') }}
+          Halo, {{ Auth::user()->name }}
         </li>
         <li class="nav-item ms-2">
-          <a href="/logout" class="btn btn-sm btn-danger">Logout</a>
+          <a href="{{ route('dashboard') }}" class="btn btn-sm btn-info text-white me-2">Dashboard</a>
+          <form method="POST" action="{{ route('logout') }}" class="d-inline">
+             @csrf
+             <button type="submit" class="btn btn-sm btn-danger">Logout</button>
+          </form>
         </li>
         @else
         <li class="nav-item ms-2">
-          <a href="/login" class="btn btn-sm btn-light">Login</a>
+          <a href="{{ route('login') }}" class="btn btn-sm btn-light">Login</a>
         </li>
         @endif
       </ul>

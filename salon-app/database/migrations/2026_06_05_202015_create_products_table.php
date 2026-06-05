@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama_product');
             $table->integer('harga');
+            $table->string('image')->nullable();
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
             $table->unsignedBigInteger('brand_id');
             $table->foreign('brand_id')->references('brand_id')->on('brands')->onDelete('cascade');
