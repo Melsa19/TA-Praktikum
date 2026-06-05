@@ -6,20 +6,28 @@ use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
+use App\Models\Product;
+
 class DatabaseSeeder extends Seeder
 {
-    use WithoutModelEvents;
-
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
-        // User::factory(10)->create();
+        $this->call([
+            CategorySeeder::class,
+            BrandSeeder::class,
+        ]);
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        Product::create([
+            'nama_product' => 'Shampoo Anti Dandruff',
+            'harga' => 25000,
+            'category_id' => 1,
+            'brand_id' => 1
+        ]);
+        Product::create([
+            'nama_product' => 'Lipstick Matte',
+            'harga' => 55000,
+            'category_id' => 3,
+            'brand_id' => 2
         ]);
     }
 }

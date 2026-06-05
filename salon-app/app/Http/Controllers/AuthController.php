@@ -16,15 +16,15 @@ class AuthController extends Controller
     // Fungsi untuk memproses data dari form login
     public function login(Request $request)
     {
-        // Validasi inputan form
-        $credentials = $request->validate([
-            'username' => 'required',
-            'password' => 'required'
-        ]);
+        // Cek login menggunakan email atau name
+        $loginType = filter_var($request->username, FILTER_VALIDATE_EMAIL) ? 'email' : 'name';
 
-        // Sementara kita pakai dd() dulu untuk memastikan data masuk ke Controller
-        // Nanti ini akan diganti dengan logika pengecekan ke database
-        dd($credentials);
+        if (Auth::attempt([$loginType => $request->username, 'password' => $request->password], $request->has('remember'))) {
+            $request->session()->regenerate();
+            return redirect()->intended('/'); // Arahkan ke halaman utama setelah login
+        }
+
+        return back()->with('error', 'Username/Email atau Password salah!')->withInput();
     }
 
     // Fungsi untuk logout
