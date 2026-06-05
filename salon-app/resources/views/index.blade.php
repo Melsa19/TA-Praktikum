@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Manajemen Booking Salon</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="#">The Girls Club</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto align-items-center">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#formBooking">Booking</a>
+        </li>
+        <li class="nav-item me-2">
+          <button id="themeToggle" class="btn btn-sm btn-outline-light">Dark Mode</button>
+        </li>
+        <li class="nav-item">
+          <button type="button" class="btn btn-sm btn-light position-relative" id="wishlistButton" data-bs-toggle="modal" data-bs-target="#wishlistModal">
+            Wishlist
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="wishlistCount">0</span>
+          </button>
+        </li>
+        @if(session('login'))
+        <li class="nav-item d-flex align-items-center text-white ms-2">
+          Halo, {{ session('username') }}
+        </li>
+        <li class="nav-item ms-2">
+          <a href="/logout" class="btn btn-sm btn-danger">Logout</a>
+        </li>
+        @else
+        <li class="nav-item ms-2">
+          <a href="/login" class="btn btn-sm btn-light">Login</a>
+        </li>
+        @endif
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<section class="hero text-center text-white d-flex align-items-center">
+    <div class="container">
+        <h1>Sistem Manajemen Booking Salon</h1>
+        <p>Mengelola jadwal dan layanan salon dengan mudah dan efisien.</p>
+    </div>
+</section>
+
+<section class="container my-5">
+    <div class="row text-center">
+
+        <div class="col-md-4 mb-3">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h3>120+</h3>
+                    <p>Total Pelanggan</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h3>15</h3>
+                    <p>Layanan Tersedia</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h3>30</h3>
+                    <p>Booking Hari Ini</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section class="container my-5" id="services">
+    <h2 class="text-center mb-4">Layanan Salon</h2>
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow service-card" data-service-id="haircut" data-service-name="Haircut">
+                <img src="{{ asset('assets/haircut.png') }}" class="card-img-top service-image" alt="Haircut">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Haircut</h5>
+                    <p class="card-text">Potongan rambut profesional untuk tampilan yang segar dan rapi.</p>
+                    <p>Stok layanan tersisa: <span class="stock-value">8</span></p>
+                    <div class="mt-auto">
+                        <button type="button" class="btn btn-pink btn-sm me-2 btn-pesan">Pesan</button>
+                        <button type="button" class="btn btn-outline-secondary btn-sm btn-wishlist">Tambah Wishlist</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow service-card" data-service-id="haircoloring" data-service-name="Hair Coloring">
+                <img src="{{ asset('assets/coloring.png') }}" class="card-img-top service-image" alt="Hair Coloring">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Hair Coloring</h5>
+                    <p class="card-text">Warna rambut baru untuk meningkatkan kepercayaan diri Anda.</p>
+                    <p>Stok layanan tersisa: <span class="stock-value">6</span></p>
+                    <div class="mt-auto">
+                        <button type="button" class="btn btn-pink btn-sm me-2 btn-pesan">Pesan</button>
+                        <button type="button" class="btn btn-outline-secondary btn-sm btn-wishlist">Tambah Wishlist</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow service-card" data-service-id="creambath" data-service-name="Creambath">
+                <img src="{{ asset('assets/creambath.png') }}" class="card-img-top service-image" alt="Creambath">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Creambath</h5>
+                    <p class="card-text">Perawatan rambut intensif untuk kesehatan akar hingga ujung rambut.</p>
+                    <p>Stok layanan tersisa: <span class="stock-value">10</span></p>
+                    <div class="mt-auto">
+                        <button type="button" class="btn btn-pink btn-sm me-2 btn-pesan">Pesan</button>
+                        <button type="button" class="btn btn-outline-secondary btn-sm btn-wishlist">Tambah Wishlist</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container my-5" id="formBooking">
+    <h2 class="text-center mb-4">Form Booking Salon</h2>
+
+    <form id="bookingForm" class="p-4 shadow rounded bg-light">
+
+        <div class="mb-3">
+            <label for="customerName" class="form-label">Nama Pelanggan</label>
+            <input id="customerName" type="text" class="form-control" placeholder="Masukkan nama">
+        </div>
+
+        <div class="mb-3">
+            <label for="customerPhone" class="form-label">No. HP</label>
+            <input id="customerPhone" type="text" class="form-control" placeholder="Masukkan nomor HP">
+        </div>
+
+        <div class="mb-3">
+            <label for="serviceSelect" class="form-label">Pilih Layanan</label>
+            <select id="serviceSelect" class="form-select">
+                <option value="Haircut">Haircut</option>
+                <option value="Hair Coloring">Hair Coloring</option>
+                <option value="Creambath">Creambath</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="bookingDate" class="form-label">Tanggal Booking</label>
+            <input id="bookingDate" type="date" class="form-control">
+        </div>
+
+        <button type="submit" class="btn btn-pink w-100">Booking Sekarang</button>
+    </form>
+</section>
+
+<div class="modal fade" id="wishlistModal" tabindex="-1" aria-labelledby="wishlistModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="wishlistModalLabel">Wishlist Salon</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <ul class="list-group" id="wishlistItems"></ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" id="clearWishlist">Kosongkan</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="text-center p-3 custom-footer">
+    <p>© 2026 TheGirlsClub - Sistem Manajemen Booking Salon</p>
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{{ asset('js/script.js') }}"></script>
+
+</body>
+</html>
